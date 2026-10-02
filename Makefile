@@ -3,7 +3,7 @@ SHELL := /bin/bash
 .DEFAULT_GOAL := help
 COMPOSE_DEV := docker compose -f docker/docker-compose.dev.yml --env-file docker/.env
 
-.PHONY: help verify verify-backend verify-frontend check-contract check-no-ai-refs dev-up dev-down dev-logs dev-cr-frontend
+.PHONY: help verify verify-backend verify-frontend check-contract check-no-ai-refs dev-up dev-up-ai dev-down dev-reset dev-logs dev-ps dev-cr-frontend
 
 help: ## Lista los objetivos disponibles
 	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -26,8 +26,18 @@ dev-up: ## Arranca MySQL + backend de ChineseReads + stub del endpoint interno (
 	@test -f docker/.env || { echo "Falta docker/.env (copia docker/.env.example)"; exit 1; }
 	$(COMPOSE_DEV) up -d --build
 
-dev-down: ## Para el entorno local
+dev-up-ai: ## Igual que dev-up más ai-service y tts-service del matriz (necesitan credenciales)
+	@test -f docker/.env || { echo "Falta docker/.env (copia docker/.env.example)"; exit 1; }
+	$(COMPOSE_DEV) --profile ai up -d --build
+
+dev-down: ## Para el entorno local (conserva la base de datos)
 	$(COMPOSE_DEV) down
+
+dev-reset: ## Para el entorno local y BORRA la base de datos local (vuelve a ejecutar los scripts de init)
+	$(COMPOSE_DEV) down -v
+
+dev-ps: ## Estado de los contenedores del entorno local
+	$(COMPOSE_DEV) ps
 
 dev-logs: ## Logs del entorno local
 	$(COMPOSE_DEV) logs -f --tail=100

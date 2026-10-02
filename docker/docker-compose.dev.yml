@@ -1,0 +1,84 @@
+# Entorno LOCAL de desarrollo. No se usa en producción.
+#   make dev-up      → MySQL (dos esquemas) + backend de ChineseReads + stub del endpoint interno
+#   make dev-up-ai   → además ai-service y tts-service del matriz (necesitan credenciales)
+# El backend y el frontend de Academy se ejecutan fuera de Docker (mvnw spring-boot:run / npm start)
+# para tener recarga en caliente y depuración.
+name: academy-dev
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-password}
+      # academy_app y los dos esquemas los crea dev/mysql-init/01-schemas.sql
+    ports:
+      - "3306:3306"
+    volumes:
+      - academy_dev_mysql:/var/lib/mysql
+      - ./dev/mysql-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${MYSQL_ROOT_PASSWORD:-password}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # Backend REAL del proyecto matriz, construido desde el repo hermano: así el login en local es el de verdad
+  # y la cookie AuthToken la emite el mismo código que en producción. Usa los mismos nombres de variable que su
+  # docker-compose.yml. Sus semillas de desarrollo (DatabaseInitializer) crean textos y dos usuarios de prueba.
+  chinesereads-backend:
+    build:
+      context: ${CHINESEREADS_REPO_PATH:-../../2025-ChineseTexts}/backend
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/chinesereads
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD:-password}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET en docker/.env (openssl rand -base64 48)}
+      APP_PUBLIC_URL: http://localhost:4200
+      AI_SERVICE_URL: http://ai-service:5001
+      OCR_SERVICE_URL: http://ocr-service:5000
+      TTS_SERVICE_URL: http://tts-service:5002
+      REMINDER_ENABLED: "false"
+      BREVO_API_KEY: ""
+      STRIPE_SECRET_KEY: ""
+      STRIPE_WEBHOOK_SECRET: ""
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    mem_limit: 768m
+
+  # Stub del endpoint interno POST/DELETE /api/internal/premium-grant mientras no exista en el matriz.
+  # Mismos mappings que usa el test de contrato del módulo access (una sola definición del contrato).
+  premium-grant-stub:
+    image: wiremock/wiremock:3.13.1
+    command: ["--port", "8080", "--global-response-templating", "--verbose"]
+    volumes:
+      - ../docs/integracion-chinesereads/wiremock:/home/wiremock/mappings:ro
+    ports:
+      - "8089:8080"
+
+  # Opcionales (perfil "ai"): servicios de IA/voz del matriz. Requieren DEEPSEEK_API_KEY y
+  # tts-service/credentials.json en el repo hermano. No se arrancan por defecto (coste y RAM).
+  ai-service:
+    profiles: ["ai"]
+    build:
+      context: ${CHINESEREADS_REPO_PATH:-../../2025-ChineseTexts}/ai-service
+    environment:
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+    ports:
+      - "5001:5001"
+
+  tts-service:
+    profiles: ["ai"]
+    build:
+      context: ${CHINESEREADS_REPO_PATH:-../../2025-ChineseTexts}/tts-service
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /app/credentials.json
+    ports:
+      - "5002:5002"
+
+volumes:
+  academy_dev_mysql:
