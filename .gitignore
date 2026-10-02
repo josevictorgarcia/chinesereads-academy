@@ -1,0 +1,32 @@
+# Secretos y entorno
+.env
+*.env
+!*.env.example
+docker/.env
+credentials.json
+*.pem
+*.key
+
+# Backend (Maven)
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/*.log
+
+# Frontend (Angular)
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/coverage/
+frontend/.nx/
+npm-debug.log*
+
+# IDEs y sistema
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# Docker local
+docker/dev/data/
