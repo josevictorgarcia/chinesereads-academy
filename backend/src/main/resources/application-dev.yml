@@ -5,7 +5,9 @@ management:
     port: 8082
 spring:
   datasource:
+    # Valores del entorno local (docker/docker-compose.dev.yml + dev/mysql-init/01-schemas.sql)
     username: ${ACADEMY_DB_USER:academy_app}
+    password: ${ACADEMY_DB_PASSWORD:academy-dev-password}
 chinesereads:
   public-url: http://localhost:4200
   internal:
