@@ -18,13 +18,6 @@ make dev-cr-frontend                                                   # Chinese
 ## Cómo funciona el login en local
 Inicias sesión en `http://localhost:4200` (ChineseReads). Su backend escribe la cookie `AuthToken` para el host `localhost`. Las cookies no distinguen puerto, así que el navegador la envía también a `http://localhost:4300`; el proxy de desarrollo la reenvía al backend de Academy, que la valida con el mismo `JWT_SECRET`. No hace falta tocar el repo matriz.
 
-## Compilador Sass en macOS 13
-Angular 22 usa por defecto `sass-embedded`, cuyo binario Dart exige macOS 14 o superior. En macOS 13 el build **se queda colgado** (sin error). Solución local, sin tocar el proyecto: exportar `NG_BUILD_SASS_EMBEDDED=0` para que Angular use el compilador Sass en JavaScript (más lento, mismo resultado). En CI y en Docker (Linux) no hace falta.
-```bash
-echo 'export NG_BUILD_SASS_EMBEDDED=0' >> ~/.bash_profile   # una vez
-```
-También conviene `export NG_CLI_ANALYTICS=false` para que la CLI no pregunte nada.
-
 ## Puertos
 | Servicio | Puerto |
 |---|---|
