@@ -1,0 +1,14 @@
+{
+  "mappings": [
+    {
+      "name": "premium-grant: sin secreto o incorrecto",
+      "priority": 5,
+      "request": { "method": "ANY", "urlPathPattern": "/api/internal/premium-grant.*" },
+      "response": {
+        "status": 401,
+        "headers": { "Content-Type": "application/problem+json" },
+        "jsonBody": { "type": "about:blank", "title": "Unauthorized", "status": 401, "code": "INTERNAL_SECRET_INVALID" }
+      }
+    }
+  ]
+}
