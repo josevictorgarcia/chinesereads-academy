@@ -3,7 +3,7 @@
 > Se completa en la PR del entorno Docker (PR4). Lo que sigue es el diseño acordado.
 
 ## Requisitos
-- Docker Desktop (Compose v2), Node 24 LTS vía `nvm` (`nvm use` lee `.nvmrc`), JDK 21 (Temurin recomendado), `make`.
+- Docker Desktop (Compose v2), Node 22 LTS vía `nvm` (`nvm use` lee `.nvmrc`), JDK 21 (Temurin recomendado), `make`.
 - El repo hermano `2025-ChineseTexts` clonado al lado (`../2025-ChineseTexts`) o `CHINESEREADS_REPO_PATH` apuntando a él.
 - `docker/.env` creado a partir de `docker/.env.example`; `JWT_SECRET` generado con `openssl rand -base64 48`.
 
