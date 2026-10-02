@@ -38,5 +38,10 @@ cd frontend && npm run lint && npm run build && npm test -- --watch=false
 scripts/check-chinesereads-contract.sh --source auto
 ```
 
+## Uso de disco en la máquina de desarrollo
+- Las imágenes Docker de Academy se construyen en CI (`docker-build`), no en local. Si se construye una en local, borrar después imagen y caché: `docker rmi <imagen>` y `docker builder prune -af`.
+- Los tests de integración solo necesitan la imagen `mysql:8.0` (≈1,1 GB, una vez). No añadir imágenes nuevas a los tests sin justificarlo.
+- Limpieza periódica recomendada: `docker system df` para medir; `docker builder prune -af` y `docker image prune` para recuperar espacio.
+
 ## Entorno local
 `docs/runbooks/dev-local.md`. El login en local es real: se construye el backend de ChineseReads desde el repo hermano (`CHINESEREADS_REPO_PATH`, por defecto `../2025-ChineseTexts`) y ambas webs comparten la cookie en `localhost`.
