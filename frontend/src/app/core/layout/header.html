@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg bg-brand" aria-label="Main">
+  <div class="container">
+    <a class="navbar-brand text-white fw-semibold" [routerLink]="'/' | localizeLink">
+      <span class="brand-hanzi" aria-hidden="true">学</span> {{ 'common.appName' | transloco }}
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNav"
+      aria-controls="mainNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="'/para-profesores' | localizeLink"
+            >{{ 'nav.forTeachers' | transloco }}</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="'/precios' | localizeLink">{{
+            'nav.pricing' | transloco
+          }}</a>
+        </li>
+        @if (session.isLoggedIn()) {
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="'/teacher' | localizeLink"
+              >{{ 'nav.teacherArea' | transloco }}</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="'/student' | localizeLink"
+              >{{ 'nav.studentArea' | transloco }}</a
+            >
+          </li>
+        }
+      </ul>
+      <div class="d-flex align-items-center gap-3">
+        <div
+          class="btn-group btn-group-sm"
+          role="group"
+          [attr.aria-label]="'common.language' | transloco"
+        >
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            [class.active]="lang === 'en'"
+            (click)="switchLang('en')"
+          >
+            EN
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            [class.active]="lang === 'es'"
+            (click)="switchLang('es')"
+          >
+            ES
+          </button>
+        </div>
+        @if (session.isLoggedIn()) {
+          <span class="text-white small" data-testid="user-name">{{ session.user()?.name }}</span>
+        } @else {
+          <a class="btn btn-light btn-sm" [href]="loginUrl" rel="noopener">{{
+            'common.login' | transloco
+          }}</a>
+        }
+      </div>
+    </div>
+  </div>
+</nav>

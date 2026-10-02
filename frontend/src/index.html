@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Valores por defecto; SeoService los sustituye por ruta e idioma, también en prerender. -->
+    <title>ChineseReads Academy — Tools for Chinese Teachers</title>
+    <meta
+      name="description"
+      content="Organise your Chinese students, generate study plans, worksheets and dictations, and give every student premium access to ChineseReads."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#c0392b" />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://academy.chinesereads.com/#website",
+            "url": "https://academy.chinesereads.com/",
+            "name": "ChineseReads Academy",
+            "inLanguage": "en",
+            "isPartOf": { "@id": "https://chinesereads.com/#website" }
+          },
+          {
+            "@type": "EducationalOrganization",
+            "@id": "https://chinesereads.com/#organization",
+            "name": "ChineseReads",
+            "url": "https://chinesereads.com/"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "ChineseReads Academy",
+            "url": "https://academy.chinesereads.com/",
+            "applicationCategory": "EducationApplication",
+            "operatingSystem": "Any (web browser)",
+            "inLanguage": "en",
+            "audience": { "@type": "EducationalAudience", "educationalRole": "teacher" }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>
