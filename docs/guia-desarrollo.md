@@ -27,7 +27,7 @@ Lee antes de proponer nada: `docs/valoracion.md`, `docs/decisiones.md` (ADR), `d
 10. **Contenido con copyright** (letras de canciones, audio comercial): prohibido salvo dominio público o subido por el profesor (ADR-007).
 
 ## Stack
-Java 21 · Spring Boot 4.1 · Spring Modulith 2.1 · Flyway · MySQL 8 (instancia compartida, esquema propio `academy`) · Angular 22 standalone + Transloco (EN raíz / `/es`) + prerender de rutas públicas · Node 24 LTS (`.nvmrc`) · Docker Compose unido a la red `app-network` · Caddy del proyecto matriz (bloque `academy.chinesereads.com`) · reutiliza `ai-service`, `tts-service` y `ocr-service` de ChineseReads por HTTP interno.
+Java 21 · Spring Boot 4.1 · Spring Modulith 2.1 · Flyway · MySQL 8 (instancia compartida, esquema propio `academy`) · Angular 22 standalone + Transloco (EN raíz / `/es`) + prerender de rutas públicas · Node 22 LTS (`.nvmrc`; Node 24 no publica binarios para macOS 13.1, la versión del equipo de desarrollo) · Docker Compose unido a la red `app-network` · Caddy del proyecto matriz (bloque `academy.chinesereads.com`) · reutiliza `ai-service`, `tts-service` y `ocr-service` de ChineseReads por HTTP interno.
 
 ## Verificación estándar antes de cualquier PR
 ```bash
