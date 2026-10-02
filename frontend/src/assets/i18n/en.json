@@ -1,0 +1,101 @@
+{
+  "common": {
+    "appName": "ChineseReads Academy",
+    "loading": "Loading…",
+    "login": "Log in with ChineseReads",
+    "logout": "Log out",
+    "language": "Language",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "errorIdHint": "If the problem persists, send us this code: {{id}}"
+  },
+  "nav": {
+    "home": "Home",
+    "forTeachers": "For teachers",
+    "pricing": "Pricing",
+    "teacherArea": "Teacher area",
+    "studentArea": "My classes"
+  },
+  "footer": {
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "parent": "Part of ChineseReads"
+  },
+  "landing": {
+    "title": "Tools for Chinese teachers, built on ChineseReads",
+    "subtitle": "Organise your students, generate study plans, worksheets and dictations, and give every student access to ChineseReads.",
+    "ctaTeacher": "I am a teacher",
+    "ctaStudent": "I am a student",
+    "ctaLogin": "Log in with your ChineseReads account",
+    "feature1Title": "Your groups, your pace",
+    "feature1Text": "Create a group, share an invite code and see who joined. Each student gets premium access to ChineseReads while their seat is active.",
+    "feature2Title": "Materials in minutes",
+    "feature2Text": "Study plans per student or group, worksheets, character sheets and dictations generated for your level and topic.",
+    "feature3Title": "Practice inside the web",
+    "feature3Text": "Exercises on vocabulary, grammar and pronunciation that your students complete online, with results you can review."
+  },
+  "forTeachers": {
+    "title": "What a teacher gets",
+    "intro": "Academy is for private Chinese teachers and small academies. One annual subscription, up to ten students included.",
+    "point1": "A teacher area to create groups and invite students with a code.",
+    "point2": "Each active student gets ChineseReads premium: unlimited texts, audio and the AI word tutor.",
+    "point3": "Materials generated for each group: study plans, worksheets, dictations and exercises.",
+    "point4": "Everything is reusable: generate once for the group, every student benefits.",
+    "status": "Academy is being built. Leave us your email on ChineseReads and we will tell you when it opens."
+  },
+  "pricing": {
+    "title": "Pricing",
+    "intro": "A single plan for teachers. Students never pay.",
+    "planName": "Teacher, yearly",
+    "price": "119 € / year",
+    "priceNote": "about 9.90 € a month",
+    "includes1": "Up to 10 students with ChineseReads premium",
+    "includes2": "All Academy tools",
+    "includes3": "Extra seats available",
+    "hypothesis": "Launch price, subject to change before the public opening."
+  },
+  "legal": {
+    "privacyTitle": "Privacy policy",
+    "termsTitle": "Terms of use",
+    "placeholder": "This page will be published before Academy opens to the public. Until then the ChineseReads policies apply.",
+    "adults": "Academy is intended for students aged 16 or older."
+  },
+  "teacher": {
+    "title": "Teacher area",
+    "welcome": "Hello, {{name}}",
+    "notTeacherTitle": "Become a teacher on Academy",
+    "notTeacherText": "Your ChineseReads account is ready. Register as a teacher to create groups and invite your students.",
+    "displayName": "Name your students will see",
+    "register": "Register as a teacher",
+    "registered": "You are registered as a teacher.",
+    "groupsSoon": "Group management arrives in the next release."
+  },
+  "student": {
+    "title": "My classes",
+    "welcome": "Hello, {{name}}",
+    "noGroups": "You are not in any group yet. Ask your teacher for an invite code."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for does not exist.",
+    "home": "Go to the home page"
+  },
+  "auth": {
+    "required": "Please log in with your ChineseReads account to continue.",
+    "sessionExpired": "Your session has expired. Please log in again."
+  },
+  "errors": {
+    "generic": "Something went wrong.",
+    "UNAUTHENTICATED": "You need to log in.",
+    "FORBIDDEN": "You do not have permission to do that.",
+    "XHR_HEADER_REQUIRED": "The request was rejected for security reasons. Reload the page and try again.",
+    "VALIDATION_FAILED": "Please review the highlighted fields.",
+    "MALFORMED_REQUEST": "The request could not be read.",
+    "NOT_FOUND": "Not found.",
+    "METHOD_NOT_ALLOWED": "Operation not allowed.",
+    "INTERNAL_ERROR": "Unexpected error. Please try again in a moment.",
+    "IDENTITY_TEACHER_ALREADY_REGISTERED": "You are already registered as a teacher.",
+    "IDENTITY_TEACHER_REQUIRED": "This area is for teachers."
+  }
+}
