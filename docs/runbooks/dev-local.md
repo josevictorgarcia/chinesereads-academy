@@ -22,7 +22,7 @@ make dev-up            # primera vez: construye la imagen del backend del matriz
 make dev-ps            # db healthy, chinesereads-backend y premium-grant-stub "Up"
 
 # 2. Backend de Academy (:8081, actuator :8082)
-cd backend && ACADEMY_DB_PASSWORD=academy-dev-password JWT_SECRET=<el de docker/.env> \
+cd backend && JWT_SECRET=<el de docker/.env> \
   ./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 
 # 3. Frontend de Academy (:4300, /api → :8081)
