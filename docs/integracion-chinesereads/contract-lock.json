@@ -1,0 +1,19 @@
+{
+  "contractVersion": "1.0.0",
+  "repository": "codeurjc-students/2025-ChineseTexts",
+  "branch": "main",
+  "referenceCommit": "fa664f3",
+  "reviewedOn": "2026-10-02",
+  "files": [
+    {"path": "backend/src/main/java/com/chinesereads/backend/Security/jwt/TokenType.java", "sha256": "1c06a5a70104f90003ef9e00b04b636507356eca28118d8411d4f03ba603738b", "why": "nombre y duración de las cookies AuthToken/RefreshToken"},
+    {"path": "backend/src/main/java/com/chinesereads/backend/Security/jwt/JwtTokenProvider.java", "sha256": "2364bc9110eaf8af48da91777e61f8c2583d08ceb62b0f09798f634288e2c170", "why": "algoritmo, derivación de la clave, claims (sub, roles, type)"},
+    {"path": "backend/src/main/java/com/chinesereads/backend/Security/jwt/JwtRequestFilter.java", "sha256": "22a1fdb6c70725aaa022bc0f66c9b1fca3d76c8973e635a29c29c0629b1fa9f8", "why": "semántica de validación (bloqueados, cookie) que Academy replica"},
+    {"path": "backend/src/main/java/com/chinesereads/backend/Security/jwt/UserLoginService.java", "sha256": "3f83506c20c19f13201cf64756edad37d2e44efdc0f1cfd28769541dd38e654a", "why": "atributos de las cookies (Domain, SameSite, Secure, Path)"},
+    {"path": "backend/src/main/java/com/chinesereads/backend/Security/SecurityConfig.java", "sha256": "f637cb1a0746b57d0dee1a330f3bbbe1f2391ca69611d806dfb3879aa576fc4b", "why": "rutas públicas/privadas del matriz; dónde encajará /api/internal"},
+    {"path": "backend/src/main/java/com/chinesereads/backend/Model/User.java", "sha256": "4aaa0ce49b0fd15b42e513dce04565470ce5b7e46e4063dae5f3eaee51a3f895", "why": "columnas de chinesereads.user que Academy lee (id, email, name, language, blocked, premium_until)"},
+    {"path": "backend/src/main/resources/application.properties", "sha256": "a38d0c2f43ef16bc2b091274df21c0939cca7840788d5dbd25429d133438df81", "why": "nombre de la propiedad jwt.secret y URLs de los servicios de IA"},
+    {"path": "backend/src/main/java/com/chinesereads/backend/Service/StripeService.java", "sha256": "591843246952b1e8cb62197ce9efe1269b7f28b4302e32f45e7883f02486c8a9", "why": "webhook compartido: debe ignorar metadata.product=academy"},
+    {"path": "docker/Caddyfile", "sha256": "d714340490cbe98e2bcedecfbb9e1acca712214430bb4d810bbba507890472af", "why": "bloque academy.chinesereads.com y bloqueo de /api/internal"},
+    {"path": "docker/docker-compose.yml", "sha256": "beac45760c37f5c167bdd7268fb2207e5a64cb812a87ade17cf553bdd3185925", "why": "nombre de la red app-network, nombres de servicios (backend, db, ai-service…) y variable JWT_SECRET"}
+  ]
+}

@@ -1,0 +1,60 @@
+name: Vigilancia nocturna de la frontera
+
+on:
+  schedule:
+    - cron: '0 5 * * *'   # 05:00 UTC = 07:00 Madrid (verano) / 06:00 (invierno)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Comprobar lock frente al repositorio matriz
+        id: check
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          scripts/check-chinesereads-contract.sh --source github 2>&1 | tee check.log
+      - name: Abrir o actualizar la issue si la frontera cambió
+        if: steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          LABEL="frontera-chinesereads"
+          gh label create "$LABEL" --repo "$REPO" --color D93F0B --description "El repositorio matriz cambió algo de la frontera" 2>/dev/null || true
+          CHANGED="$(grep -E '✗' check.log || true)"
+          BODY_FILE="$(mktemp)"
+          {
+            echo "La comprobación nocturna detectó cambios en ficheros del repositorio matriz de los que depende Academy."
+            echo
+            echo '```'
+            echo "$CHANGED"
+            echo '```'
+            echo
+            echo "### Qué hacer"
+            echo "1. Revisar el diff de esos ficheros en \`codeurjc-students/2025-ChineseTexts\` (\`main\`) y compararlo con \`docs/integracion-chinesereads/CONTRACT.md\`."
+            echo "2. Si el contrato sigue válido: \`scripts/check-chinesereads-contract.sh --source github --update\`, commit del lock y entrada en \`CHANGELOG-frontera.md\`."
+            echo "3. Si no: actualizar \`CONTRACT.md\` (subir versión), el código afectado y anotar en el changelog el mensaje para el otro repositorio."
+            echo
+            echo "### Mensaje listo para llevar al repositorio matriz"
+            echo "> Academy depende de estos ficheros y han cambiado: \`$(echo "$CHANGED" | sed -E 's/.*(backend|docker)\//\1\//' | tr '\n' ' ')\`. Revisa si el cambio afecta a lo descrito en docs/integracion-chinesereads/CONTRACT.md de Academy (cookies, claims, columnas de user, Caddy, webhook) y responde con lo que haya cambiado."
+            echo
+            echo "_Generado automáticamente por el flujo nocturno. Ejecución: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}_"
+          } > "$BODY_FILE"
+          EXISTING="$(gh issue list --repo "$REPO" --label "$LABEL" --state open --json number --jq '.[0].number // empty')"
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --repo "$REPO" --body-file "$BODY_FILE"
+            echo "Comentario añadido a la issue #$EXISTING"
+          else
+            gh issue create --repo "$REPO" --label "$LABEL" --title "La frontera con ChineseReads cambió ($(date -u +%Y-%m-%d))" --body-file "$BODY_FILE"
+          fi
+      - name: Resultado
+        if: steps.check.outcome == 'failure'
+        run: exit 1
