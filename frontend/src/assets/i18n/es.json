@@ -69,7 +69,18 @@
     "displayName": "Nombre que verán tus alumnos",
     "register": "Registrarme como profesor",
     "registered": "Estás registrado como profesor.",
-    "groupsSoon": "La gestión de grupos llega en la próxima entrega."
+    "groupsTitle": "Tus grupos",
+    "newGroup": "Nuevo grupo",
+    "groupName": "Nombre del grupo",
+    "groupLevel": "Nivel (opcional)",
+    "create": "Crear",
+    "noGroups": "Aún no tienes grupos. Crea el primero y comparte su código de invitación.",
+    "members": "{{count}} alumnos",
+    "seats": "Asientos: {{used}} de {{total}}",
+    "seatsUntil": "Suscripción activa hasta {{date}}",
+    "subscriptionInactive": "Tu suscripción no está activa: los alumnos no podrán unirse hasta renovarla.",
+    "trialNote": "Estás en periodo de prueba gratuito.",
+    "open": "Abrir"
   },
   "student": {
     "title": "Mis clases",
@@ -96,6 +107,41 @@
     "METHOD_NOT_ALLOWED": "Operación no permitida.",
     "INTERNAL_ERROR": "Error inesperado. Inténtalo de nuevo en un momento.",
     "IDENTITY_TEACHER_ALREADY_REGISTERED": "Ya estás registrado como profesor.",
-    "IDENTITY_TEACHER_REQUIRED": "Esta zona es para profesores."
+    "IDENTITY_TEACHER_REQUIRED": "Esta zona es para profesores.",
+    "CLASSROOM_GROUP_NOT_FOUND": "Grupo no encontrado.",
+    "CLASSROOM_ENROLLMENT_NOT_FOUND": "Alumno no encontrado.",
+    "CLASSROOM_INVITE_INVALID": "Ese código no es válido o ha caducado.",
+    "CLASSROOM_CANNOT_JOIN_OWN_GROUP": "No puedes unirte a tu propio grupo.",
+    "BILLING_SUBSCRIPTION_INACTIVE": "La suscripción del profesor no está activa.",
+    "BILLING_SEAT_QUOTA_EXCEEDED": "Este profesor no tiene asientos libres."
+  },
+  "group": {
+    "title": "Grupo",
+    "membersTitle": "Alumnos",
+    "noMembers": "Todavía no hay alumnos. Comparte el código de invitación.",
+    "inviteTitle": "Código de invitación",
+    "generateInvite": "Generar código",
+    "regenerateInvite": "Nuevo código",
+    "revokeInvite": "Revocar",
+    "inviteHint": "Los alumnos introducen este código en \"Mis clases\" o abren el enlace de abajo.",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "expires": "Válido hasta {{date}}",
+    "uses": "Usado {{count}} veces",
+    "remove": "Dar de baja",
+    "removeConfirm": "¿Dar de baja a este alumno? Perderá su asiento y el premium de ChineseReads que le daba Academy.",
+    "backToGroups": "Volver a los grupos",
+    "joinLink": "Enlace para unirse"
+  },
+  "join": {
+    "title": "Unirme a un grupo",
+    "codeLabel": "Código de invitación",
+    "codePlaceholder": "8 caracteres",
+    "submit": "Unirme",
+    "success": "Te has unido a {{group}}.",
+    "already": "Ya estabas en {{group}}.",
+    "myGroups": "Mis grupos",
+    "teacher": "Profesor: {{name}}",
+    "since": "Desde {{date}}"
   }
 }

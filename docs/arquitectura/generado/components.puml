@@ -19,11 +19,20 @@ System_Boundary("AcademyApplication_boundary", "AcademyApplication", $tags="") {
   Container_Boundary("AcademyApplication.AcademyApplication_boundary", "AcademyApplication", $tags="") {
     Component(AcademyApplication.AcademyApplication.Shared, "Shared", $techn="Module", $descr="", $tags="", $link="")
     Component(AcademyApplication.AcademyApplication.Identity, "Identity", $techn="Module", $descr="", $tags="", $link="")
+    Component(AcademyApplication.AcademyApplication.Billing, "Billing", $techn="Module", $descr="", $tags="", $link="")
+    Component(AcademyApplication.AcademyApplication.Classroom, "Classroom", $techn="Module", $descr="", $tags="", $link="")
+    Component(AcademyApplication.AcademyApplication.Access, "Access", $techn="Module", $descr="", $tags="", $link="")
   }
 
 }
 
-Rel(AcademyApplication.AcademyApplication.Identity, AcademyApplication.AcademyApplication.Shared, "depends on", $techn="", $tags="", $link="")
+Rel(AcademyApplication.AcademyApplication.Access, AcademyApplication.AcademyApplication.Classroom, "listens to", $techn="", $tags="", $link="")
+Rel(AcademyApplication.AcademyApplication.Access, AcademyApplication.AcademyApplication.Shared, "uses", $techn="", $tags="", $link="")
+Rel(AcademyApplication.AcademyApplication.Identity, AcademyApplication.AcademyApplication.Shared, "uses", $techn="", $tags="", $link="")
+Rel(AcademyApplication.AcademyApplication.Classroom, AcademyApplication.AcademyApplication.Shared, "depends on", $techn="", $tags="", $link="")
+Rel(AcademyApplication.AcademyApplication.Classroom, AcademyApplication.AcademyApplication.Billing, "uses", $techn="", $tags="", $link="")
+Rel(AcademyApplication.AcademyApplication.Classroom, AcademyApplication.AcademyApplication.Identity, "uses", $techn="", $tags="", $link="")
+Rel(AcademyApplication.AcademyApplication.Billing, AcademyApplication.AcademyApplication.Identity, "listens to", $techn="", $tags="", $link="")
 
 SHOW_LEGEND(true)
 hide stereotypes

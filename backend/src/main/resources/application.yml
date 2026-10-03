@@ -60,6 +60,16 @@ chinesereads:
 
 academy:
   frontend-url: ${ACADEMY_FRONTEND_URL:https://academy.chinesereads.com}
+  billing:
+    trial-seats: ${ACADEMY_TRIAL_SEATS:10}
+    trial-duration: ${ACADEMY_TRIAL_DURATION:P30D}
+  classroom:
+    invite-ttl: ${ACADEMY_INVITE_TTL:P30D}
+  access:
+    enabled: ${ACADEMY_ACCESS_ENABLED:true}
+    retry-delay: ${ACADEMY_ACCESS_RETRY_DELAY:PT5M}
+    retry-initial-delay: PT1M
+    max-attempts: ${ACADEMY_ACCESS_MAX_ATTEMPTS:20}
 
 springdoc:
   api-docs:

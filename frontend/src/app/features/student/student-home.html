@@ -1,0 +1,56 @@
+<section class="container py-5 col-lg-8">
+  <h1 class="fw-semibold">{{ 'student.title' | transloco }}</h1>
+  <p class="lead">{{ 'student.welcome' | transloco: { name: session.user()?.name } }}</p>
+
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <h2 class="h5">{{ 'join.title' | transloco }}</h2>
+      <form (ngSubmit)="join()" class="row g-2 align-items-end">
+        <div class="col-sm-8">
+          <label class="form-label" for="code">{{ 'join.codeLabel' | transloco }}</label>
+          <input
+            id="code"
+            name="code"
+            class="form-control text-uppercase"
+            maxlength="8"
+            minlength="8"
+            required
+            [placeholder]="'join.codePlaceholder' | transloco"
+            [(ngModel)]="codeInput"
+            [disabled]="busy()"
+            autocomplete="off"
+          />
+        </div>
+        <div class="col-sm-4">
+          <button
+            class="btn btn-primary w-100"
+            type="submit"
+            [disabled]="codeInput.trim().length !== 8 || busy()"
+          >
+            {{ 'join.submit' | transloco }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <h2 class="h5">{{ 'join.myGroups' | transloco }}</h2>
+  @if (groups().length === 0) {
+    <p class="alert alert-light border">{{ 'student.noGroups' | transloco }}</p>
+  } @else {
+    <ul class="list-group shadow-sm">
+      @for (g of groups(); track g.groupId) {
+        <li class="list-group-item">
+          <strong>{{ g.name }}</strong>
+          @if (g.level) {
+            <span class="badge text-bg-light ms-2">{{ g.level }}</span>
+          }
+          <div class="small text-body-secondary">
+            {{ 'join.teacher' | transloco: { name: g.teacherName } }} ·
+            {{ 'join.since' | transloco: { date: (g.joinedAt | date: 'mediumDate') } }}
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</section>

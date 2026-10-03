@@ -1,0 +1,114 @@
+<section class="container py-5 col-lg-8">
+  <h1 class="fw-semibold">{{ 'teacher.title' | transloco }}</h1>
+  <p class="lead">{{ 'teacher.welcome' | transloco: { name: session.user()?.name } }}</p>
+
+  @if (!session.isTeacher()) {
+    <div class="card border-0 shadow-sm">
+      <div class="card-body">
+        <h2 class="h5">{{ 'teacher.notTeacherTitle' | transloco }}</h2>
+        <p>{{ 'teacher.notTeacherText' | transloco }}</p>
+        <form (ngSubmit)="register()" #f="ngForm" class="row g-2 align-items-end">
+          <div class="col-sm-8">
+            <label class="form-label" for="displayName">{{
+              'teacher.displayName' | transloco
+            }}</label>
+            <input
+              id="displayName"
+              name="displayName"
+              class="form-control"
+              required
+              maxlength="120"
+              [(ngModel)]="displayName"
+              [disabled]="saving()"
+            />
+          </div>
+          <div class="col-sm-4">
+            <button class="btn btn-primary w-100" type="submit" [disabled]="f.invalid || saving()">
+              {{ 'teacher.register' | transloco }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  } @else {
+    @if (seats(); as s) {
+      <div
+        class="alert border d-flex flex-wrap gap-3 align-items-center"
+        [class.alert-light]="s.subscriptionActive"
+        [class.alert-warning]="!s.subscriptionActive"
+        data-testid="seats"
+      >
+        <strong>{{ 'teacher.seats' | transloco: { used: s.used, total: s.total } }}</strong>
+        @if (s.periodEnd) {
+          <span class="small text-body-secondary">{{
+            'teacher.seatsUntil' | transloco: { date: (s.periodEnd | date: 'mediumDate') }
+          }}</span>
+        }
+        @if (!s.subscriptionActive) {
+          <span>{{ 'teacher.subscriptionInactive' | transloco }}</span>
+        }
+      </div>
+    }
+
+    <div class="d-flex justify-content-between align-items-center mt-4 mb-2">
+      <h2 class="h4 mb-0">{{ 'teacher.groupsTitle' | transloco }}</h2>
+    </div>
+
+    <form (ngSubmit)="createGroup()" #g="ngForm" class="row g-2 align-items-end mb-4">
+      <div class="col-sm-6">
+        <label class="form-label" for="groupName">{{ 'teacher.groupName' | transloco }}</label>
+        <input
+          id="groupName"
+          name="groupName"
+          class="form-control"
+          required
+          maxlength="80"
+          [(ngModel)]="newGroupName"
+          [disabled]="saving()"
+        />
+      </div>
+      <div class="col-sm-3">
+        <label class="form-label" for="groupLevel">{{ 'teacher.groupLevel' | transloco }}</label>
+        <input
+          id="groupLevel"
+          name="groupLevel"
+          class="form-control"
+          maxlength="8"
+          placeholder="HSK2"
+          [(ngModel)]="newGroupLevel"
+          [disabled]="saving()"
+        />
+      </div>
+      <div class="col-sm-3">
+        <button class="btn btn-primary w-100" type="submit" [disabled]="g.invalid || saving()">
+          {{ 'teacher.create' | transloco }}
+        </button>
+      </div>
+    </form>
+
+    @if (groups().length === 0) {
+      <p class="text-body-secondary">{{ 'teacher.noGroups' | transloco }}</p>
+    } @else {
+      <ul class="list-group shadow-sm">
+        @for (group of groups(); track group.id) {
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+              <strong>{{ group.name }}</strong>
+              @if (group.level) {
+                <span class="badge text-bg-light ms-2">{{ group.level }}</span>
+              }
+              <span class="small text-body-secondary ms-2">{{
+                'teacher.members' | transloco: { count: group.activeMembers }
+              }}</span>
+            </span>
+            <a
+              class="btn btn-outline-primary btn-sm"
+              [routerLink]="['/teacher/groups', group.id] | localizeLink"
+              >{{ 'teacher.open' | transloco }}</a
+            >
+          </li>
+        }
+      </ul>
+    }
+  }
+</section>

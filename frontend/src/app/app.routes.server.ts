@@ -16,8 +16,12 @@ const prerendered: ServerRoute[] = PUBLIC.flatMap((p) => [
 export const serverRoutes: ServerRoute[] = [
   ...prerendered,
   { path: 'teacher', renderMode: RenderMode.Client },
+  { path: 'teacher/**', renderMode: RenderMode.Client },
   { path: 'student', renderMode: RenderMode.Client },
+  { path: 'join', renderMode: RenderMode.Client },
   { path: 'es/teacher', renderMode: RenderMode.Client },
+  { path: 'es/teacher/**', renderMode: RenderMode.Client },
   { path: 'es/student', renderMode: RenderMode.Client },
+  { path: 'es/join', renderMode: RenderMode.Client },
   { path: '**', renderMode: RenderMode.Client },
 ];
