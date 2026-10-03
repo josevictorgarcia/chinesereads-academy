@@ -6,6 +6,9 @@ chinesereads:
     service-secret: dev-internal-secret-change-me-0123456789abcdef
 academy:
   frontend-url: http://localhost:4300
+  access:
+    enabled: false
+    retry-initial-delay: PT1H
 logging:
   level:
     com.chinesereads.academy: DEBUG

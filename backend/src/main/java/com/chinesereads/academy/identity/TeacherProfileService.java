@@ -26,6 +26,11 @@ public class TeacherProfileService {
   }
 
   @Transactional(readOnly = true)
+  public Optional<TeacherProfileView> findById(long teacherId) {
+    return repository.findById(teacherId).filter(p -> p.getDeletedAt() == null).map(TeacherProfileService::toView);
+  }
+
+  @Transactional(readOnly = true)
   public Optional<TeacherProfileView> findByUserId(long userId) {
     return repository.findByUserIdAndDeletedAtIsNull(userId).map(TeacherProfileService::toView);
   }

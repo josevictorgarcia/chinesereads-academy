@@ -69,7 +69,18 @@
     "displayName": "Name your students will see",
     "register": "Register as a teacher",
     "registered": "You are registered as a teacher.",
-    "groupsSoon": "Group management arrives in the next release."
+    "groupsTitle": "Your groups",
+    "newGroup": "New group",
+    "groupName": "Group name",
+    "groupLevel": "Level (optional)",
+    "create": "Create",
+    "noGroups": "You have no groups yet. Create the first one and share its invite code.",
+    "members": "{{count}} students",
+    "seats": "Seats: {{used}} of {{total}}",
+    "seatsUntil": "Subscription active until {{date}}",
+    "subscriptionInactive": "Your subscription is not active: students cannot join until it is renewed.",
+    "trialNote": "You are on a free trial.",
+    "open": "Open"
   },
   "student": {
     "title": "My classes",
@@ -96,6 +107,41 @@
     "METHOD_NOT_ALLOWED": "Operation not allowed.",
     "INTERNAL_ERROR": "Unexpected error. Please try again in a moment.",
     "IDENTITY_TEACHER_ALREADY_REGISTERED": "You are already registered as a teacher.",
-    "IDENTITY_TEACHER_REQUIRED": "This area is for teachers."
+    "IDENTITY_TEACHER_REQUIRED": "This area is for teachers.",
+    "CLASSROOM_GROUP_NOT_FOUND": "Group not found.",
+    "CLASSROOM_ENROLLMENT_NOT_FOUND": "Student not found.",
+    "CLASSROOM_INVITE_INVALID": "That code is not valid or has expired.",
+    "CLASSROOM_CANNOT_JOIN_OWN_GROUP": "You cannot join your own group.",
+    "BILLING_SUBSCRIPTION_INACTIVE": "The teacher's subscription is not active.",
+    "BILLING_SEAT_QUOTA_EXCEEDED": "This teacher has no free seats left."
+  },
+  "group": {
+    "title": "Group",
+    "membersTitle": "Students",
+    "noMembers": "No students yet. Share the invite code.",
+    "inviteTitle": "Invite code",
+    "generateInvite": "Generate code",
+    "regenerateInvite": "New code",
+    "revokeInvite": "Revoke",
+    "inviteHint": "Students enter this code in \"My classes\" or open the link below.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "expires": "Valid until {{date}}",
+    "uses": "Used {{count}} times",
+    "remove": "Remove",
+    "removeConfirm": "Remove this student? They will lose their seat and their ChineseReads premium from Academy.",
+    "backToGroups": "Back to groups",
+    "joinLink": "Join link"
+  },
+  "join": {
+    "title": "Join a group",
+    "codeLabel": "Invite code",
+    "codePlaceholder": "8 characters",
+    "submit": "Join",
+    "success": "You joined {{group}}.",
+    "already": "You were already in {{group}}.",
+    "myGroups": "My groups",
+    "teacher": "Teacher: {{name}}",
+    "since": "Since {{date}}"
   }
 }

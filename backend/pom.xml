@@ -151,6 +151,13 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <!-- Stub del endpoint interno de ChineseReads en el test de contrato (mismos mappings que docker dev). -->
+      <groupId>org.wiremock</groupId>
+      <artifactId>wiremock-standalone</artifactId>
+      <version>3.13.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>io.jsonwebtoken</groupId>
       <artifactId>jjwt-api</artifactId>
       <version>${jjwt.version}</version>

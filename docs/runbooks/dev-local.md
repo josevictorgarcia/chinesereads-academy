@@ -47,6 +47,13 @@ curl -s  localhost:8089/__admin/mappings | head -c 300   # el stub ha cargado lo
 
 El `Domain=.chinesereads.com` real solo se prueba cuando exista la PR de integración del matriz.
 
+## Prueba de fuego sin navegador
+Con el entorno arrancado (pasos 1 y 2 de arriba), `scripts/e2e-local.sh` recorre el flujo completo con login real:
+```bash
+TEACHER_EMAIL=... TEACHER_PASSWORD=... STUDENT_EMAIL=... STUDENT_PASSWORD=... scripts/e2e-local.sh
+```
+(credenciales de los dos usuarios de desarrollo del repo matriz). Comprueba sesión compartida, alta de profesor, TRIAL, grupo, código, alta y baja de alumno y las llamadas al stub del endpoint interno.
+
 ## Puertos
 | Servicio | Puerto |
 |---|---|

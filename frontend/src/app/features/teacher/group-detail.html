@@ -1,0 +1,100 @@
+<section class="container py-5 col-lg-8">
+  <a class="small" [routerLink]="'/teacher' | localizeLink"
+    >← {{ 'group.backToGroups' | transloco }}</a
+  >
+  @if (group(); as g) {
+    <h1 class="fw-semibold mt-2">
+      {{ g.name }}
+      @if (g.level) {
+        <span class="badge text-bg-light fs-6 align-middle">{{ g.level }}</span>
+      }
+    </h1>
+    @if (g.description) {
+      <p class="text-body-secondary">{{ g.description }}</p>
+    }
+    <p class="small text-body-secondary">
+      {{ 'teacher.seats' | transloco: { used: g.seats.used, total: g.seats.total } }}
+    </p>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h5">{{ 'group.inviteTitle' | transloco }}</h2>
+        @if (g.activeInvite; as inv) {
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <code class="fs-3 px-2 py-1 bg-light rounded border" data-testid="invite-code">{{
+              inv.code
+            }}</code>
+            <button class="btn btn-outline-secondary btn-sm" type="button" (click)="copy()">
+              {{ (copied() ? 'group.copied' : 'group.copy') | transloco }}
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm"
+              type="button"
+              (click)="generateInvite()"
+              [disabled]="busy()"
+            >
+              {{ 'group.regenerateInvite' | transloco }}
+            </button>
+            <button
+              class="btn btn-outline-danger btn-sm"
+              type="button"
+              (click)="revokeInvite()"
+              [disabled]="busy()"
+            >
+              {{ 'group.revokeInvite' | transloco }}
+            </button>
+          </div>
+          <p class="small text-body-secondary mt-2 mb-1">{{ 'group.inviteHint' | transloco }}</p>
+          <p class="small mb-1">
+            <span class="text-body-secondary">{{ 'group.joinLink' | transloco }}:</span>
+            <a [href]="joinLink">{{ joinLink }}</a>
+          </p>
+          <p class="small text-body-secondary mb-0">
+            {{ 'group.expires' | transloco: { date: (inv.expiresAt | date: 'mediumDate') } }} ·
+            {{ 'group.uses' | transloco: { count: inv.uses } }}
+          </p>
+        } @else {
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="generateInvite()"
+            [disabled]="busy()"
+          >
+            {{ 'group.generateInvite' | transloco }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <h2 class="h5">{{ 'group.membersTitle' | transloco }}</h2>
+    @if (g.members.length === 0) {
+      <p class="text-body-secondary">{{ 'group.noMembers' | transloco }}</p>
+    } @else {
+      <ul class="list-group shadow-sm">
+        @for (m of g.members; track m.enrollmentId) {
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span
+              ><strong>{{ m.name }}</strong>
+              @if (m.email) {
+                <span class="small text-body-secondary ms-2">{{ m.email }}</span>
+              }
+              <span class="small text-body-secondary ms-2">{{
+                'join.since' | transloco: { date: (m.joinedAt | date: 'mediumDate') }
+              }}</span></span
+            >
+            <button
+              class="btn btn-outline-danger btn-sm"
+              type="button"
+              (click)="remove(m.enrollmentId)"
+              [disabled]="busy()"
+            >
+              {{ 'group.remove' | transloco }}
+            </button>
+          </li>
+        }
+      </ul>
+    }
+  } @else {
+    <p class="text-body-secondary mt-3">{{ 'common.loading' | transloco }}</p>
+  }
+</section>

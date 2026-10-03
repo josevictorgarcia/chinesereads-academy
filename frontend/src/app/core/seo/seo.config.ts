@@ -110,7 +110,7 @@ export function resolveSeo(path: string, lang: Lang): SeoConfig {
   const clean = (path.split('?')[0].split('#')[0] || '/').replace(/\/+$/, '') || '/';
   const found = PUBLIC_SEO[clean];
   if (found) return { ...found[lang], path: clean };
-  if (clean.startsWith('/teacher') || clean.startsWith('/student')) {
+  if (clean.startsWith('/teacher') || clean.startsWith('/student') || clean.startsWith('/join')) {
     return { ...PRIVATE_SEO[lang], path: clean };
   }
   return { ...NOT_FOUND_SEO[lang], path: clean };

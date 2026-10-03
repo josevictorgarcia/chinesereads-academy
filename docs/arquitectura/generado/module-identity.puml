@@ -23,7 +23,7 @@ System_Boundary("AcademyApplication_boundary", "AcademyApplication", $tags="") {
 
 }
 
-Rel(AcademyApplication.AcademyApplication.Identity, AcademyApplication.AcademyApplication.Shared, "depends on", $techn="", $tags="", $link="")
+Rel(AcademyApplication.AcademyApplication.Identity, AcademyApplication.AcademyApplication.Shared, "uses", $techn="", $tags="", $link="")
 
 SHOW_LEGEND(true)
 hide stereotypes

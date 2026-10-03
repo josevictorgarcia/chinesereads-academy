@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/guards';
+import { authGuard, teacherGuard } from './core/guards';
 
 /**
  * Rutas declaradas una vez y montadas dos veces: inglés en la raíz y español bajo `/es`
@@ -33,7 +33,18 @@ export const appRoutes: Routes = [
     loadComponent: () => import('./features/teacher/teacher-home').then((m) => m.TeacherHome),
   },
   {
+    path: 'teacher/groups/:id',
+    canActivate: [authGuard, teacherGuard],
+    loadComponent: () => import('./features/teacher/group-detail').then((m) => m.GroupDetailPage),
+  },
+  {
     path: 'student',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/student/student-home').then((m) => m.StudentHome),
+  },
+  // /join?code=XXXXXXXX: misma página del alumno con el código precargado (enlace que comparte el profesor).
+  {
+    path: 'join',
     canActivate: [authGuard],
     loadComponent: () => import('./features/student/student-home').then((m) => m.StudentHome),
   },

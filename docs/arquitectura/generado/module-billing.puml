@@ -1,0 +1,30 @@
+@startuml
+title <size:24>Billing</size>
+
+set separator none
+top to bottom direction
+
+<style>
+  root {
+    BackgroundColor: #ffffff
+    FontColor: #444444
+  }
+</style>
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+
+System_Boundary("AcademyApplication_boundary", "AcademyApplication", $tags="") {
+  Container_Boundary("AcademyApplication.AcademyApplication_boundary", "AcademyApplication", $tags="") {
+    Component(AcademyApplication.AcademyApplication.Identity, "Identity", $techn="Module", $descr="", $tags="", $link="")
+    Component(AcademyApplication.AcademyApplication.Billing, "Billing", $techn="Module", $descr="", $tags="", $link="")
+  }
+
+}
+
+Rel(AcademyApplication.AcademyApplication.Billing, AcademyApplication.AcademyApplication.Identity, "listens to", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+hide stereotypes
+@enduml
