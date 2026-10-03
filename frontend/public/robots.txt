@@ -1,0 +1,13 @@
+# robots.txt — ChineseReads Academy (https://academy.chinesereads.com)
+User-agent: *
+Allow: /
+
+# Áreas privadas (requieren sesión): sin valor para buscadores.
+Disallow: /teacher
+Disallow: /student
+Disallow: /join
+Disallow: /es/teacher
+Disallow: /es/student
+Disallow: /es/join
+
+Sitemap: https://academy.chinesereads.com/sitemap.xml

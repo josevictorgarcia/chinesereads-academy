@@ -1,0 +1,15 @@
+.bg-brand {
+  background: var(--academy-brand);
+}
+.brand-hanzi {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.25rem;
+  margin-right: 0.15rem;
+}
+.nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  &.active,
+  &:hover {
+    color: #fff;
+  }
+}

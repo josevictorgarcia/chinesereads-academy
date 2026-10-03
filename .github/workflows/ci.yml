@@ -72,6 +72,8 @@ jobs:
     if: needs.detect.outputs.frontend == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      NG_CLI_ANALYTICS: 'false'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -85,6 +87,9 @@ jobs:
       - name: Lint
         working-directory: frontend
         run: npm run lint
+      - name: Formato (Prettier)
+        working-directory: frontend
+        run: npm run format:check
       - name: Build (producción, con prerender)
         working-directory: frontend
         run: npm run build -- --configuration production

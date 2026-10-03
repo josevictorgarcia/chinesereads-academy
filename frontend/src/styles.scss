@@ -1,0 +1,26 @@
+// Paleta heredada de ChineseReads para coherencia visual entre ambas webs.
+$primary: #c0392b;
+$success: #27ae60;
+$warning: #e0a800;
+$font-family-sans-serif:
+  system-ui,
+  -apple-system,
+  'Segoe UI',
+  Roboto,
+  'Helvetica Neue',
+  Arial,
+  sans-serif;
+$headings-font-family: 'Noto Serif SC', Georgia, serif;
+$enable-shadows: false;
+
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+  --academy-brand: #{$primary};
+  --academy-hero-bg: #fffdf3;
+}
+
+body {
+  background: #fafafa;
+}
