@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://academy.chinesereads.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://academy.chinesereads.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://academy.chinesereads.com/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://academy.chinesereads.com/"/>
+  </url>
+  <url>
+    <loc>https://academy.chinesereads.com/es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://academy.chinesereads.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://academy.chinesereads.com/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://academy.chinesereads.com/"/>
+  </url>
+  <url>
+    <loc>https://academy.chinesereads.com/para-profesores</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://academy.chinesereads.com/para-profesores"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://academy.chinesereads.com/es/para-profesores"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://academy.chinesereads.com/para-profesores"/>
+  </url>
+  <url>
+    <loc>https://academy.chinesereads.com/es/para-profesores</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://academy.chinesereads.com/para-profesores"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://academy.chinesereads.com/es/para-profesores"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://academy.chinesereads.com/para-profesores"/>
+  </url>
+  <url>
+    <loc>https://academy.chinesereads.com/precios</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://academy.chinesereads.com/precios"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://academy.chinesereads.com/es/precios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://academy.chinesereads.com/precios"/>
+  </url>
+  <url>
+    <loc>https://academy.chinesereads.com/es/precios</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://academy.chinesereads.com/precios"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://academy.chinesereads.com/es/precios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://academy.chinesereads.com/precios"/>
+  </url>
+</urlset>

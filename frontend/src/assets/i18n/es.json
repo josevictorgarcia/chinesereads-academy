@@ -1,0 +1,101 @@
+{
+  "common": {
+    "appName": "ChineseReads Academy",
+    "loading": "Cargando…",
+    "login": "Entrar con ChineseReads",
+    "logout": "Salir",
+    "language": "Idioma",
+    "back": "Volver",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "errorIdHint": "Si el problema persiste, envíanos este código: {{id}}"
+  },
+  "nav": {
+    "home": "Inicio",
+    "forTeachers": "Para profesores",
+    "pricing": "Precios",
+    "teacherArea": "Área de profesor",
+    "studentArea": "Mis clases"
+  },
+  "footer": {
+    "privacy": "Política de privacidad",
+    "terms": "Términos de uso",
+    "parent": "Parte de ChineseReads"
+  },
+  "landing": {
+    "title": "Herramientas para profesores de chino, sobre ChineseReads",
+    "subtitle": "Organiza a tus alumnos, genera planes de estudio, fichas y dictados, y da a cada alumno acceso a ChineseReads.",
+    "ctaTeacher": "Soy profesor",
+    "ctaStudent": "Soy alumno",
+    "ctaLogin": "Entra con tu cuenta de ChineseReads",
+    "feature1Title": "Tus grupos, a tu ritmo",
+    "feature1Text": "Crea un grupo, comparte un código de invitación y ve quién se ha unido. Cada alumno tiene acceso premium a ChineseReads mientras su asiento esté activo.",
+    "feature2Title": "Materiales en minutos",
+    "feature2Text": "Planes de estudio por alumno o grupo, fichas, plantillas de caracteres y dictados generados para tu nivel y tema.",
+    "feature3Title": "Práctica dentro de la web",
+    "feature3Text": "Ejercicios de vocabulario, gramática y pronunciación que tus alumnos completan en línea, con resultados que puedes revisar."
+  },
+  "forTeachers": {
+    "title": "Qué obtiene un profesor",
+    "intro": "Academy es para profesores particulares de chino y academias pequeñas. Una suscripción anual, hasta diez alumnos incluidos.",
+    "point1": "Un área de profesor para crear grupos e invitar alumnos con un código.",
+    "point2": "Cada alumno activo tiene premium en ChineseReads: textos y audio ilimitados y el tutor de palabras con IA.",
+    "point3": "Materiales generados para cada grupo: planes de estudio, fichas, dictados y ejercicios.",
+    "point4": "Todo es reutilizable: generas una vez para el grupo y cada alumno lo aprovecha.",
+    "status": "Academy está en construcción. Déjanos tu email en ChineseReads y te avisaremos cuando abra."
+  },
+  "pricing": {
+    "title": "Precios",
+    "intro": "Un único plan para profesores. Los alumnos nunca pagan.",
+    "planName": "Profesor, anual",
+    "price": "119 € / año",
+    "priceNote": "unos 9,90 € al mes",
+    "includes1": "Hasta 10 alumnos con premium en ChineseReads",
+    "includes2": "Todas las herramientas de Academy",
+    "includes3": "Asientos extra disponibles",
+    "hypothesis": "Precio de lanzamiento, sujeto a cambios antes de la apertura pública."
+  },
+  "legal": {
+    "privacyTitle": "Política de privacidad",
+    "termsTitle": "Términos de uso",
+    "placeholder": "Esta página se publicará antes de que Academy abra al público. Hasta entonces aplican las políticas de ChineseReads.",
+    "adults": "Academy está pensada para alumnos de 16 años o más."
+  },
+  "teacher": {
+    "title": "Área de profesor",
+    "welcome": "Hola, {{name}}",
+    "notTeacherTitle": "Hazte profesor en Academy",
+    "notTeacherText": "Tu cuenta de ChineseReads ya está lista. Regístrate como profesor para crear grupos e invitar a tus alumnos.",
+    "displayName": "Nombre que verán tus alumnos",
+    "register": "Registrarme como profesor",
+    "registered": "Estás registrado como profesor.",
+    "groupsSoon": "La gestión de grupos llega en la próxima entrega."
+  },
+  "student": {
+    "title": "Mis clases",
+    "welcome": "Hola, {{name}}",
+    "noGroups": "Todavía no estás en ningún grupo. Pide a tu profesor un código de invitación."
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "text": "La página que buscas no existe.",
+    "home": "Ir a la página de inicio"
+  },
+  "auth": {
+    "required": "Inicia sesión con tu cuenta de ChineseReads para continuar.",
+    "sessionExpired": "Tu sesión ha caducado. Vuelve a iniciar sesión."
+  },
+  "errors": {
+    "generic": "Algo ha fallado.",
+    "UNAUTHENTICATED": "Tienes que iniciar sesión.",
+    "FORBIDDEN": "No tienes permiso para hacer eso.",
+    "XHR_HEADER_REQUIRED": "La petición se rechazó por seguridad. Recarga la página e inténtalo de nuevo.",
+    "VALIDATION_FAILED": "Revisa los campos marcados.",
+    "MALFORMED_REQUEST": "No se pudo leer la petición.",
+    "NOT_FOUND": "No encontrado.",
+    "METHOD_NOT_ALLOWED": "Operación no permitida.",
+    "INTERNAL_ERROR": "Error inesperado. Inténtalo de nuevo en un momento.",
+    "IDENTITY_TEACHER_ALREADY_REGISTERED": "Ya estás registrado como profesor.",
+    "IDENTITY_TEACHER_REQUIRED": "Esta zona es para profesores."
+  }
+}

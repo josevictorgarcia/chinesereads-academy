@@ -1,0 +1,73 @@
+spring:
+  application:
+    name: academy
+  datasource:
+    url: ${ACADEMY_DB_URL:jdbc:mysql://localhost:3306/academy?connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true}
+    username: ${ACADEMY_DB_USER:academy_app}
+    password: ${ACADEMY_DB_PASSWORD:}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    default-schema: academy
+    schemas: academy
+    validate-on-migrate: true
+    create-schemas: false
+  modulith:
+    events:
+      jdbc:
+        schema-initialization:
+          enabled: false
+      republish-outstanding-events-on-restart: true
+      completion-mode: archive
+  cache:
+    cache-names: chinesereads-users
+    caffeine:
+      spec: maximumSize=10000,expireAfterWrite=60s
+
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+
+management:
+  server:
+    port: ${MANAGEMENT_PORT:8081}
+  endpoints:
+    web:
+      exposure:
+        include: health,info,modulith
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  info:
+    build:
+      enabled: true
+
+chinesereads:
+  jwt-secret: ${JWT_SECRET:}
+  public-url: ${CHINESEREADS_PUBLIC_URL:https://chinesereads.com}
+  internal:
+    base-url: ${CHINESEREADS_INTERNAL_BASE_URL:http://backend:8080}
+    service-secret: ${CHINESEREADS_INTERNAL_SECRET:}
+
+academy:
+  frontend-url: ${ACADEMY_FRONTEND_URL:https://academy.chinesereads.com}
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+logging:
+  level:
+    com.chinesereads.academy: INFO
+    org.springframework.security: WARN

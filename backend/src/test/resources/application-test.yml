@@ -1,0 +1,11 @@
+chinesereads:
+  jwt-secret: academy-contract-test-secret-0123456789abcdef
+  public-url: http://localhost:4200
+  internal:
+    base-url: http://localhost:8089
+    service-secret: dev-internal-secret-change-me-0123456789abcdef
+academy:
+  frontend-url: http://localhost:4300
+logging:
+  level:
+    com.chinesereads.academy: DEBUG

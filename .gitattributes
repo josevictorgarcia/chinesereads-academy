@@ -5,3 +5,4 @@ mvnw text eol=lf
 *.jpg binary
 *.ico binary
 *.woff2 binary
+*.cmd text eol=crlf

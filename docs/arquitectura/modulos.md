@@ -25,3 +25,6 @@ Paquete raíz `com.chinesereads.academy`; un subpaquete por módulo (Spring Modu
 Grafo sin ciclos: `shared ← identity ← billing ← classroom ← access`. `billing` nunca conoce `classroom`: recibe hechos por evento a través de `access`.
 
 Los diagramas generados por el test de modularidad se copian a esta carpeta en cada PR que toque módulos.
+
+## Diagramas generados
+`docs/arquitectura/generado/*.puml` los produce `ModularityTest` (Spring Modulith `Documenter`) en cada build; se copian aquí en las PR que tocan módulos. Se visualizan con cualquier renderizador PlantUML (p. ej. la extensión de VS Code o plantuml.com).

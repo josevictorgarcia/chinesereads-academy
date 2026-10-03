@@ -2,6 +2,13 @@
 
 Cada entrada es un mensaje listo para llevar al otro repositorio. Formato: fecha · versión del contrato · qué cambió · qué debe hacer el otro lado · estado.
 
+## 2026-10-02 · contrato 1.0.1 · precisión sobre el algoritmo HMAC
+**Qué cambió en Academy:** el contrato decía "HS256"; en realidad jjwt 0.11.5 elige HS256/HS384/HS512 según la longitud del secreto (`signWith(Key)`). El verificador de Academy (`identity/internal/SharedJwtVerifier`) replica esa regla y el test de contrato lo cubre con secretos de 44, 48 y 64 bytes.
+
+**Mensaje para el repositorio de ChineseReads:** ninguna acción. Solo tenerlo en cuenta si algún día se fija el algoritmo explícitamente en `JwtTokenProvider.buildToken` (p. ej. `signWith(key, HS256)`): avisar, porque Academy asume la regla por longitud.
+
+**Estado:** sin acción pendiente.
+
 ## 2026-10-02 · contrato 1.0.0 · creación del contrato
 **Qué cambió en Academy:** se formaliza la frontera (cookie `AuthToken`, claims, columnas leídas, endpoint interno, Caddy, Stripe). Nada en código todavía.
 

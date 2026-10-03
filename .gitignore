@@ -30,3 +30,7 @@ Thumbs.db
 
 # Docker local
 docker/dev/data/
+
+# Salida del procesador de anotaciones de Spring Modulith (se genera al compilar)
+build/
+**/generated-spring-modulith/

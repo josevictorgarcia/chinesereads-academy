@@ -1,6 +1,6 @@
 # Contrato de frontera ChineseReads ↔ Academy
 
-**Versión del contrato:** 1.0.0 (2026-10-02)
+**Versión del contrato:** 1.0.1 (2026-10-02)
 **Repo matriz:** `codeurjc-students/2025-ChineseTexts`, rama `main`, commit de referencia `fa664f3`.
 
 Este documento y los ficheros de esta carpeta son la **única fuente de verdad** de lo que un proyecto espera del otro. Los tests de contrato de Academy leen de aquí; la PR de integración del repo matriz debe leer de aquí también. Cualquier cambio exige subir la versión, anotarlo en `CHANGELOG-frontera.md` y actualizar `contract-lock.json`.
@@ -13,7 +13,7 @@ Este documento y los ficheros de esta carpeta son la **única fuente de verdad**
 | Cookie de refresco | `RefreshToken` (Academy la ignora) |
 | Atributos hoy | `HttpOnly`, `Path=/`, sin `Domain`, sin `Secure`, sin `SameSite` |
 | Atributos tras la PR de integración | + `Domain=.chinesereads.com`, `SameSite=Lax`, `Secure` (configurables; en local sin `Domain`) |
-| Algoritmo | HS256, clave `Keys.hmacShaKeyFor(JWT_SECRET.trim().getBytes(UTF_8))` (≥ 32 bytes) |
+| Algoritmo | HMAC con clave `Keys.hmacShaKeyFor(JWT_SECRET.trim().getBytes(UTF_8))` (≥ 32 bytes). **jjwt elige el algoritmo por la longitud del secreto**: ≥ 64 bytes → HS512, ≥ 48 → HS384, si no HS256. Un secreto generado con `openssl rand -base64 48` tiene 64 caracteres → **HS512**. El verificador de Academy aplica la misma regla |
 | Librería emisora | `io.jsonwebtoken:jjwt` 0.11.5 (`Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token)`) |
 | Claims | `sub` = email · `iat` · `exp` (7 días) · `roles` = `[{"authority":"ROLE_USER"}, ...]` · `type` = `ACCESS` \| `REFRESH` |
 | Variable de entorno | `JWT_SECRET` (**mismo valor** en `docker/.env` de ambos proyectos) |
@@ -24,7 +24,7 @@ Este documento y los ficheros de esta carpeta son la **única fuente de verdad**
 
 | Elemento | Valor |
 |---|---|
-| Tabla | `chinesereads.user` (singular) y `chinesereads.user_roles(user_id, roles)` |
+| Tabla | `chinesereads.user` (singular) y `chinesereads.user_roles(user_id, roles)`. Nota JDBC: en MySQL una base de datos es un **catálogo**, no un schema; la entidad de Academy usa `@Table(catalog = "chinesereads")` |
 | Columnas leídas | `id BIGINT`, `email VARCHAR`, `name VARCHAR`, `language VARCHAR`, `blocked BIT/TINYINT(1)`, `premium_until DATETIME(6) NULL` |
 | Usuario MySQL | `academy_app`: `ALL ON academy.*`, `SELECT ON chinesereads.user`, `SELECT ON chinesereads.user_roles` |
 | Contrato SQL | `chinesereads-user.contract.sql` (lo ejecutan los tests de Academy en Testcontainers) |
