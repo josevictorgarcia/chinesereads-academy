@@ -1,0 +1,26 @@
+server:
+  port: 8081
+management:
+  server:
+    port: 8082
+spring:
+  datasource:
+    # Valores del entorno local (docker/docker-compose.dev.yml + dev/mysql-init/01-schemas.sql)
+    username: ${ACADEMY_DB_USER:academy_app}
+    password: ${ACADEMY_DB_PASSWORD:academy-dev-password}
+chinesereads:
+  public-url: http://localhost:4200
+  internal:
+    base-url: ${CHINESEREADS_INTERNAL_BASE_URL:http://localhost:8089}
+academy:
+  frontend-url: http://localhost:4300
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+logging:
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %5p [%X{correlationId:-}] %-40.40logger{39} : %m%n"
+  level:
+    com.chinesereads.academy: DEBUG
