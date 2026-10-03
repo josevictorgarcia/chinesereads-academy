@@ -1,0 +1,47 @@
+# Forma de PRODUCCIÓN de Academy (todavía no se despliega). Se une a la red `app-network` que crea el
+# docker-compose del proyecto matriz, donde ya corren caddy, backend, db, ai-service, ocr-service y
+# tts-service. Caddy enruta academy.chinesereads.com → academy-frontend (/) y academy-backend (/api).
+# Variables: docker/.env (JWT_SECRET y CHINESEREADS_INTERNAL_SECRET con el MISMO valor que en el matriz).
+name: academy
+
+services:
+  academy-backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      ACADEMY_DB_URL: jdbc:mysql://db:3306/academy?connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true
+      ACADEMY_DB_USER: academy_app
+      ACADEMY_DB_PASSWORD: ${ACADEMY_DB_PASSWORD:?Define ACADEMY_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET (mismo valor que ChineseReads)}
+      CHINESEREADS_PUBLIC_URL: https://chinesereads.com
+      CHINESEREADS_INTERNAL_BASE_URL: http://backend:8080
+      CHINESEREADS_INTERNAL_SECRET: ${CHINESEREADS_INTERNAL_SECRET:-}
+      ACADEMY_FRONTEND_URL: https://academy.chinesereads.com
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET_ACADEMY: ${STRIPE_WEBHOOK_SECRET_ACADEMY:-}
+      STRIPE_PRICE_TEACHER_YEARLY: ${STRIPE_PRICE_TEACHER_YEARLY:-}
+    mem_limit: 640m
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8081/actuator/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+    networks:
+      - app-network
+
+  academy-frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    mem_limit: 64m
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
