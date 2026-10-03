@@ -26,7 +26,7 @@ Este documento y los ficheros de esta carpeta son la **única fuente de verdad**
 |---|---|
 | Tabla | `chinesereads.user` (singular) y `chinesereads.user_roles(user_id, roles)`. Nota JDBC: en MySQL una base de datos es un **catálogo**, no un schema; la entidad de Academy usa `@Table(catalog = "chinesereads")` |
 | Columnas leídas | `id BIGINT`, `email VARCHAR`, `name VARCHAR`, `language VARCHAR`, `blocked BIT/TINYINT(1)`, `premium_until DATETIME(6) NULL` |
-| Usuario MySQL | `academy_app`: `ALL ON academy.*`, `SELECT ON chinesereads.user`, `SELECT ON chinesereads.user_roles` |
+| Usuario MySQL | `academy_app`: `ALL ON academy.*`, `SELECT ON chinesereads.user`, `SELECT ON chinesereads.user_roles` (en producción, con las tablas ya creadas; en el entorno local el GRANT es `SELECT ON chinesereads.*` porque MySQL 8 no admite GRANT sobre tablas inexistentes). Nunca INSERT/UPDATE/DELETE sobre `chinesereads` |
 | Contrato SQL | `chinesereads-user.contract.sql` (lo ejecutan los tests de Academy en Testcontainers) |
 | Regla | Academy **nunca** escribe en el esquema `chinesereads` |
 
